@@ -31,7 +31,7 @@ while True:
         rect = visual.Rect(win,
                            width=60,
                            height=60,
-                           pos=(0, 30),
+                           pos=(0, pozycja_y + 10),
                            fillColor="#339933"
                           )
         rect.draw()
