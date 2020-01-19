@@ -1,0 +1,44 @@
+
+from psychopy import visual, event, core
+
+def create_rect(pozycja_y):
+    rect = visual.Rect(win,
+                   width=30,
+                   height=30,
+                   pos=(0, pozycja_y),
+                   fillColor="#339933")
+    return rect
+
+win = visual.Window(
+    size=[400, 500],
+    units="pix",
+    fullscr=False)
+
+#prawdopodobie wklejenie kwadracika w okno
+rect = visual.Rect(win,
+                   width=60,
+                   height=60,
+                   pos=(0, 20),
+                   fillColor="#339933"
+                  )
+rect.draw()
+win.flip()
+
+
+while True:
+    key_pressed = event.getKeys()
+    if  'space' in key_pressed:
+        rect = visual.Rect(win,
+                           width=60,
+                           height=60,
+                           pos=(0, 30),
+                           fillColor="#339933"
+                          )
+        rect.draw()
+        win.flip()
+    if 'escape' in key_pressed:
+        win.close()
+        break
+        print(key_pressed)
+
+win.close()
