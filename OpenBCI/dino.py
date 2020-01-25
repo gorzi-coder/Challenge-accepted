@@ -91,8 +91,8 @@ road2 = pygame.image.load("graphics/road.png")
 
 dino_list = []
 dino_list.append(pygame.image.load("graphics/dino.png")) #0
-dino_list.append(pygame.image.load("graphics/dino_run1.png")) #1
-dino_list.append(pygame.image.load("graphics/dino_run2.png")) #2
+dino_list.append(pygame.image.load("graphics/dino_Forrest do gry.png")) #1
+dino_list.append(pygame.image.load("graphics/dino_forrest do gry 2")) #2
 dino_list.append(pygame.image.load("graphics/dino_error.png")) #3
 run_indx = 1
 
