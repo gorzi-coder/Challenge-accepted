@@ -86,8 +86,8 @@ dieSound = pygame.mixer.Sound("sounds/die.wav")
 checkpointSound = pygame.mixer.Sound("sounds/checkPoint.wav")
 
 #grafiki
-road1 = pygame.image.load("graphics/road.png")
-road2 = pygame.image.load("graphics/road.png")
+road1 = pygame.image.load("graphics/chodnik.png")
+road2 = pygame.image.load("graphics/chodnik.png")
 
 dino_list = []
 dino_list.append(pygame.image.load("graphics/dino.png")) #0
