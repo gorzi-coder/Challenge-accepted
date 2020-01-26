@@ -344,16 +344,17 @@ print('subprocess started')
 #stałe
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 300
-ROAD_HEIGHT = 250
+ROAD_HEIGHT = 270
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 FPS = 25
 DINO_POS_X = 70
-DINO_POS_Y = ROAD_HEIGHT - 100
+DINO_POS_Y = ROAD_HEIGHT - 90
 CACTUS_POS_Y = ROAD_HEIGHT - 20
 
 pygame.init()
 gameDisplay = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Forrest Jump Game")
 clock = pygame.time.Clock()
 
 #dźwięki
@@ -367,9 +368,9 @@ road2 = pygame.image.load("graphics/chodnik.jpg")
 
 dino_list = []
 dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #0
-dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #1
-dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #2
-dino_list.append(pygame.image.load("graphics/dino_error.png")) #3
+dino_list.append(pygame.image.load("graphics/Forrest do gry.png")) #1
+dino_list.append(pygame.image.load("graphics/Forrest do gry 1.png")) #2
+dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #3
 run_indx = 1
 
 cactus_list = []
