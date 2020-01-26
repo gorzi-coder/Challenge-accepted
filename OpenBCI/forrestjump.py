@@ -367,8 +367,8 @@ backgroundSound = pygame.mixer.music.load("sounds/sweethomeMP3.mp3")
 pygame.mixer.music.play(-1)
 
 #grafiki
-road1 = pygame.image.load("graphics/chodnik.jpg")
-road2 = pygame.image.load("graphics/chodnik.jpg")
+road1 = pygame.image.load("graphics/chodnik.png")
+road2 = pygame.image.load("graphics/chodnik.png")
 
 dino_list = []
 dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #0
