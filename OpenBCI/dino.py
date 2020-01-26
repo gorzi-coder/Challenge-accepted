@@ -342,15 +342,15 @@ proc_blink_det.start()
 print('subprocess started')
 
 #stałe
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 500
+SCREEN_WIDTH = 500
+SCREEN_HEIGHT = 300
 ROAD_HEIGHT = 250
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 FPS = 25
 DINO_POS_X = 70
-DINO_POS_Y = ROAD_HEIGHT - 15
-CACTUS_POS_Y = ROAD_HEIGHT - 40
+DINO_POS_Y = ROAD_HEIGHT - 100
+CACTUS_POS_Y = ROAD_HEIGHT - 20
 
 pygame.init()
 gameDisplay = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -366,18 +366,18 @@ road1 = pygame.image.load("graphics/chodnik.jpg")
 road2 = pygame.image.load("graphics/chodnik.jpg")
 
 dino_list = []
-dino_list.append(pygame.image.load("graphics/Forrest do gry.png")) #0
+dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #0
 dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #1
 dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #2
 dino_list.append(pygame.image.load("graphics/dino_error.png")) #3
 run_indx = 1
 
 cactus_list = []
-cactus_list.append(pygame.image.load("graphics/cactus1.png")) #0
-cactus_list.append(pygame.image.load("graphics/cactus2.png")) #1
-cactus_list.append(pygame.image.load("graphics/cactus3.png")) #2
-cactus_list.append(pygame.image.load("graphics/cactus4.png")) #3
-
+cactus_list.append(pygame.image.load("graphics/ławka0.png")) #0
+cactus_list.append(pygame.image.load("graphics/ławka0.png")) #1
+cactus_list.append(pygame.image.load("graphics/ławka0.png")) #2
+cactus_list.append(pygame.image.load("graphics/ławka0.png")) #3
+background = pygame.image.load('graphics/park.jpg')
 
 road1_pos_x = 0
 road2_pos_x = 600
@@ -438,6 +438,7 @@ while gra_trwa:
 
     #początkowy ekran
     gameDisplay.fill(WHITE)
+    gameDisplay.blit(background,(0,0))
     gameDisplay.blit(road1, (road1_pos_x, ROAD_HEIGHT))
     if game_on == False:
         gameDisplay.blit(startScreen, startScreenRect)
