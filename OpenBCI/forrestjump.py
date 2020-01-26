@@ -285,15 +285,12 @@ def blinks_detector(quit_program, blink_det, blinks_num, blink):
         else:
             smp = sample.channels_data[0]
             smp_flted = frt.filterIIR(smp, 0)
-        #print(smp_flted)
+        
 
         brt.blink_detect(smp_flted, -38000)
-        # report it the new blink is spotted
+        
         if brt.new_blink:
             if brt.blinks_num == 1:
-                # First detected blink is in fact artifact from filter
-                # settling. Correct blink number by subtracting 1.
-                # First "blink" successfully detected - device is connected.
                 connected.set()
                 print('CONNECTED. Speller starts detecting blinks.')
             else:
@@ -309,10 +306,8 @@ def blinks_detector(quit_program, blink_det, blinks_num, blink):
 
     if __name__ == '__main__':
         clock = pg.time.Clock()
-        # filtering in real time object creation
         frt = flt.FltRealTime()
 
-        # blink detection in real time object creation
         brt = blk.BlinkRealTime()
 
         if SYMULACJA_SYGNALU:
@@ -350,9 +345,9 @@ ROAD_HEIGHT = 270
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 FPS = 25
-DINO_POS_X = 70
-DINO_POS_Y = ROAD_HEIGHT - 90
-CACTUS_POS_Y = ROAD_HEIGHT - 20
+FORREST_POS_X = 70
+FORREST_POS_Y = ROAD_HEIGHT - 90
+LAWKA_POS_Y = ROAD_HEIGHT - 20
 
 pygame.init()
 gameDisplay = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -370,18 +365,18 @@ pygame.mixer.music.play(-1)
 road1 = pygame.image.load("graphics/chodnik.png")
 road2 = pygame.image.load("graphics/chodnik.png")
 
-dino_list = []
-dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #0
-dino_list.append(pygame.image.load("graphics/Forrest do gry.png")) #1
-dino_list.append(pygame.image.load("graphics/Forrest do gry 1.png")) #2
-dino_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #3
+forrest_list = []
+forrest_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #0
+forrest_list.append(pygame.image.load("graphics/Forrest do gry.png")) #1
+forrest_list.append(pygame.image.load("graphics/Forrest do gry 1.png")) #2
+forrest_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #3
 run_indx = 1
 
-cactus_list = []
-cactus_list.append(pygame.image.load("graphics/ławka0.png")) #0
-cactus_list.append(pygame.image.load("graphics/ławka0.png")) #1
-cactus_list.append(pygame.image.load("graphics/ławka0.png")) #2
-cactus_list.append(pygame.image.load("graphics/ławka0.png")) #3
+lawka_list = []
+lawka_list.append(pygame.image.load("graphics/ławka0.png")) #0
+lawka_list.append(pygame.image.load("graphics/ławka0.png")) #1
+lawka_list.append(pygame.image.load("graphics/ławka0.png")) #2
+lawka_list.append(pygame.image.load("graphics/ławka0.png")) #3
 background = pygame.image.load('graphics/park.jpg')
 
 road1_pos_x = 0
@@ -391,12 +386,12 @@ speed_was_up = True
 clear_game = True
 game_on = False
 lost_game = True
-dino_jump = False
+forrest_jump = False
 jump_height = 7
 points = 0
 
-frames_since_cactus = 0
-gen_cactus_time = 50 #moment wygenerowania pierwszego kaktusa
+frames_since_lawka = 0
+gen_lawka_time = 50
 
 #napisy
 font = pygame.font.Font('freesansbold.ttf', 18)
@@ -408,9 +403,9 @@ startScreenRect.center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2-50)
 gra_trwa = True
 while gra_trwa:
     if blink.value == 1:
-        if dino_jump == False:
+        if forrest_jump == False:
             game_on = True
-            dino_jump = True
+            forrest_jump = True
             '''jumpSound.play()'''
             blink.value = 0
         if lost_game == True:
@@ -423,32 +418,32 @@ while gra_trwa:
             if event.key == pygame.K_ESCAPE:
                 quit_program.set()
                 gra_trwa = False
-            if event.key == pygame.K_SPACE and dino_jump == False:
+            if event.key == pygame.K_SPACE and forrest_jump == False:
                 game_on = True
-                dino_jump = True
-               '''jumpSound.play()'''
+                forrest_jump = True
+                #'''jumpSound.play()'''
             if lost_game == True and event.key == pygame.K_SPACE:
                 time.sleep(1)
                 clear_game = True
                 lost_game = False
 
-    #ustawienia początkowe
+    
     if clear_game == True:
         FPS = 25
-        cactus_pos_x = []
-        curr_cactus = []
+        lawka_pos_x = []
+        curr_lawka = []
         speed = 10
         points = 0
         clear_game = False
 
-    #początkowy ekran
+    #ekran początek
     gameDisplay.fill(WHITE)
     gameDisplay.blit(background,(0,0))
     gameDisplay.blit(road1, (road1_pos_x, ROAD_HEIGHT))
     if game_on == False:
         gameDisplay.blit(startScreen, startScreenRect)
 
-    #przegrany ekran
+    #ekran przegrana
     if game_on == True and lost_game == True:
         gameDisplay.blit(startScreen, startScreenRect)
         lostScreen = font.render('LICZBA PUNKTOW: ' + str(points), True, BLACK, WHITE)
@@ -472,36 +467,35 @@ while gra_trwa:
         gameDisplay.blit(pointsDisplay, pointsRect)
 
 
-    #dino biegnie, jedna animacja powinna trwać 3 klatki
-    if game_on == True and dino_jump == False and lost_game == False:
+    if game_on == True and forrest_jump == False and lost_game == False:
         if run_indx <= 3:
-            dino = gameDisplay.blit(dino_list[1], (DINO_POS_X, DINO_POS_Y))
+            forrest = gameDisplay.blit(forrest_list[1], (FORREST_POS_X, FORREST_POS_Y))
             run_indx += 1
         elif run_indx < 6:
-            dino = gameDisplay.blit(dino_list[2], (DINO_POS_X, DINO_POS_Y))
+            forrest = gameDisplay.blit(forrest_list[2], (FORREST_POS_X, FORREST_POS_Y))
             run_indx += 1
         else:
-            dino = gameDisplay.blit(dino_list[2], (DINO_POS_X, DINO_POS_Y))
+            forrest = gameDisplay.blit(forrest_list[2], (FORREST_POS_X, FORREST_POS_Y))
             run_indx = 1
     elif game_on == False:
-        dino = gameDisplay.blit(dino_list[0], (DINO_POS_X, DINO_POS_Y))
+        forrest = gameDisplay.blit(forrest_list[0], (FORREST_POS_X, FORREST_POS_Y))
 
-    #dino skacze
-    if game_on == True and dino_jump == True:
+    
+    if game_on == True and forrest_jump == True:
         if jump_height >= -7:
             going_up = 1
             if jump_height < 0:
                 going_up = -1
-            DINO_POS_Y -= (jump_height ** 2) * 0.8 * going_up
+            FORREST_POS_Y -= (jump_height ** 2) * 0.8 * going_up
             jump_height -= 1
         else:
-            dino_jump = False
+            forrest_jump = False
             jump_height = 7
-        dino = gameDisplay.blit(dino_list[0], (DINO_POS_X, DINO_POS_Y))
+        forrest = gameDisplay.blit(forrest_list[0], (FORREST_POS_X, FORREST_POS_Y))
 
-    #przewijanie drogi
+   
     if game_on == True:
-        frames_since_cactus += 1
+        frames_since_lawka += 1
         road1_pos_x -= speed
         if road1_pos_x <= -SCREEN_WIDTH:
             gameDisplay.blit(road2, (road2_pos_x, ROAD_HEIGHT))
@@ -510,30 +504,30 @@ while gra_trwa:
                 road2_pos_x = 600
                 road1_pos_x = 0
 
-    #przeszkody
-    if frames_since_cactus == gen_cactus_time:
-        gen_cactus_time = random.randint(20, 50) #nowa przeszkoda generowana jest raz na 20 do 50 klatek
-        gen_cactus_img = random.randint(0, 3)
-        frames_since_cactus = 0
-        curr_cactus.append([gen_cactus_img, SCREEN_WIDTH]) #każdy kaktus ma [swój obrazek, swoją pozycję x]
+    
+    if frames_since_lawka == gen_lawka_time:
+        gen_lawka_time = random.randint(30, 50)
+        gen_lawka_img = random.randint(0, 3)
+        frames_since_lawka = 0
+        curr_lawka.append([gen_lawka_img, SCREEN_WIDTH])
 
-    for i in range(len(curr_cactus)):
-        if curr_cactus[i][0] == 0 or curr_cactus[i][0] == 3: #obniżenie położenia Y mniejszych kaktusów
+    for i in range(len(curr_lawka)):
+        if curr_lawka[i][0] == 0 or curr_lawka[i][0] == 3:
             lower = 12
         else: lower = 0
-        cactus = gameDisplay.blit(cactus_list[curr_cactus[i][0]], (curr_cactus[i][1], CACTUS_POS_Y+lower))
-        curr_cactus[i][1] -= speed
-        #punkty
-        if curr_cactus[i][1] == 0:
+        lawka = gameDisplay.blit(lawka_list[curr_lawka[i][0]], (curr_lawka[i][1], LAWKA_POS_Y+lower))
+        curr_lawka[i][1] -= speed
+        
+        if curr_lawka[i][1] == 0:
             points += 1
-        #zderzenie
-        if dino.colliderect(cactus):
+        
+        if forrest.colliderect(lawka):
             speed = 0
             if lost_game == False:
                 dieSound.play()
             lost_game = True
-            dino = gameDisplay.blit(dino_list[3], (DINO_POS_X, DINO_POS_Y))
-            #informacja o momencie zderzenia
+            forrest = gameDisplay.blit(forrest_list[3], (FORREST_POS_X, FORREST_POS_Y))
+            
             #print(str(datetime.datetime.now().time()) + " punkty: " + str(points))
 
 
