@@ -360,9 +360,11 @@ pygame.display.set_caption("Forrest Jump Game")
 clock = pygame.time.Clock()
 
 #dźwięki
-jumpSound = pygame.mixer.Sound("sounds/jump.wav")
-dieSound = pygame.mixer.Sound("sounds/die.wav")
+jumpSound = pygame.mixer.Sound("sounds/skok.wav")
+dieSound = pygame.mixer.Sound("sounds/ohno.wav")
 checkpointSound = pygame.mixer.Sound("sounds/checkPoint.wav")
+backgroundSound = pygame.mixer.music.load("sounds/sweethomeMP3.mp3")
+pygame.mixer.music.play(-1)
 
 #grafiki
 road1 = pygame.image.load("graphics/chodnik.jpg")
