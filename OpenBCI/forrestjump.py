@@ -90,7 +90,6 @@ pygame.display.set_caption("Forrest Jump Game")
 clock = pygame.time.Clock()
 
 #dźwięki
-'''jumpSound = pygame.mixer.Sound("sounds/skok.wav")'''
 dieSound = pygame.mixer.Sound("sounds/ohno.wav")
 checkpointSound = pygame.mixer.Sound("sounds/checkPoint.wav")
 backgroundSound = pygame.mixer.music.load("sounds/sweethomeMP3.mp3")
@@ -141,7 +140,6 @@ while gra_trwa:
         if forrest_jump == False:
             game_on = True
             forrest_jump = True
-            '''jumpSound.play()'''
             blink.value = 0
         if lost_game == True:
             time.sleep(1)
@@ -156,7 +154,6 @@ while gra_trwa:
             if event.key == pygame.K_SPACE and forrest_jump == False:
                 game_on = True
                 forrest_jump = True
-                #'''jumpSound.play()'''
             if lost_game == True and event.key == pygame.K_SPACE:
                 time.sleep(1)
                 clear_game = True
