@@ -130,7 +130,7 @@ gen_lawka_time = 50
 #napisy
 font = pygame.font.Font('freesansbold.ttf', 18)
 points_font = pygame.font.Font('freesansbold.ttf', 12)
-startScreen = font.render('WCISNIJ SPACJE ABY ZACZAC', True, BLACK, WHITE)
+startScreen = font.render('JUMP FORREST JUMP', True, BLACK, WHITE)
 startScreenRect = startScreen.get_rect()
 startScreenRect.center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2-50)
 
