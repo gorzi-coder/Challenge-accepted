@@ -176,6 +176,7 @@ if __name__ == "__main__":
             time.sleep(1)
             clear_game = True
             lost_game = False
+            game_on = True
             blink.value = 0
 
 
