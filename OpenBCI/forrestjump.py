@@ -213,7 +213,16 @@ if __name__ == "__main__":
             pointsRect = pointsDisplay.get_rect()
             pointsRect.center = (SCREEN_WIDTH-100, 10)
             gameDisplay.blit(pointsDisplay, pointsRect)
-
+            
+        if game_on == True:
+            frames_since_lawka += 1
+            road1_pos_x -= speed
+            if road1_pos_x <= 0:
+                gameDisplay.blit(road2, (road2_pos_x, ROAD_HEIGHT))
+                road2_pos_x -= speed
+                if road2_pos_x == 0:
+                    road2_pos_x = 500
+                    road1_pos_x = 0
 
         if game_on == True and forrest_jump == False and lost_game == False:
             if run_indx <= 3:
@@ -228,7 +237,6 @@ if __name__ == "__main__":
         elif game_on == False:
             forrest = gameDisplay.blit(forrest_list[0], (FORREST_POS_X, FORREST_POS_Y))
 
-
         if game_on == True and forrest_jump == True:
             if jump_height >= -7:
                 going_up = 1
@@ -240,17 +248,6 @@ if __name__ == "__main__":
                 forrest_jump = False
                 jump_height = 7
             forrest = gameDisplay.blit(forrest_list[0], (FORREST_POS_X, FORREST_POS_Y))
-
-
-        if game_on == True:
-            frames_since_lawka += 1
-            road1_pos_x -= speed
-            if road1_pos_x <= -SCREEN_WIDTH:
-                gameDisplay.blit(road2, (road2_pos_x, ROAD_HEIGHT))
-                road2_pos_x -= speed
-                if road2_pos_x == 0:
-                    road2_pos_x = 50
-                    road1_pos_x = 0
 
 
         if frames_since_lawka == gen_lawka_time:
