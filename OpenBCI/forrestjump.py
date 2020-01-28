@@ -117,8 +117,8 @@ if __name__ == "__main__":
     pygame.mixer.music.play(-1)
 
     #grafiki
-    road1 = pygame.image.load("graphics/chodnik.png")
-    road2 = pygame.image.load("graphics/chodnik.png")
+    road1 = pygame.image.load("graphics/chodnik2.0.png")
+    road2 = pygame.image.load("graphics/chodnik2.0.png")
 
     forrest_list = []
     forrest_list.append(pygame.image.load("graphics/forrest do gry 2.png")) #0
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     background = pygame.image.load('graphics/park.jpg')
 
     road1_pos_x = 0
-    road2_pos_x = 50
+    road2_pos_x = 500
 
     speed_was_up = True
     clear_game = True
@@ -249,7 +249,7 @@ if __name__ == "__main__":
                 gameDisplay.blit(road2, (road2_pos_x, ROAD_HEIGHT))
                 road2_pos_x -= speed
                 if road2_pos_x == 0:
-                    road2_pos_x = 50
+                    road2_pos_x = 500
                     road1_pos_x = 0
 
 
