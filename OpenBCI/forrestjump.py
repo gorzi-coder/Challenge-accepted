@@ -186,6 +186,44 @@ if __name__ == "__main__":
             speed = 10
             points = 0
             clear_game = False
+"""
+#wersja na linuxa
+
+gaming = True
+while gaming:
+
+    if blink.value == 1:
+        if forrest_jump == False:
+            game_on = True
+            forrest_jump = True
+            blink.value = 0
+        if lost_game == True:
+            time.sleep(1)
+            clear_game = True
+            lost_game = False
+            blink.value = 0
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                quit_program.set()
+                pygame.quit()
+                quit()
+                gaming = False
+
+            if event.key == pygame.K_SPACE and forrest_jump == False:
+                game_on = True
+                forrest_jump = True
+            if lost_game == True and event.key == pygame.K_SPACE:
+                time.sleep(1)
+                clear_game = True
+                lost_game = False
+                pygame.mixer.music.unpause()
+"""
+            
+            
+            
+            
+            
 
 
         #ekran początek
