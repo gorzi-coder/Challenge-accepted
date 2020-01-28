@@ -59,7 +59,6 @@ def blinks_detector(quit_program, blink_det, blinks_num, blink,):
 
 if __name__ == "__main__":
 
-
     blink_det = mp.Queue()
     blink = mp.Value('i', 0)
     blinks_num = mp.Value('i', 0)
@@ -93,7 +92,6 @@ if __name__ == "__main__":
 
     #global mac_adress
     #mac_adress = 'd2:b4:11:81:48:ad'
-
 
 
     #stałe
@@ -158,7 +156,6 @@ if __name__ == "__main__":
     startScreenRect.center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2-50)
 
 
-
     #MRUGANIE
     gra_trwa = True
     while gra_trwa:
@@ -168,7 +165,7 @@ if __name__ == "__main__":
                     quit_program.set()
                     gra_trwa = False
 
-        if blink.value == 1 and forrest_jump == False:
+        if blink.value == 1 and forrest_jump == False and lost_game==False::
             game_on = True
             forrest_jump = True
             blink.value = 0
@@ -186,45 +183,6 @@ if __name__ == "__main__":
             speed = 10
             points = 0
             clear_game = False
-"""
-#wersja na linuxa
-
-gaming = True
-while gaming:
-
-    if blink.value == 1:
-        if forrest_jump == False:
-            game_on = True
-            forrest_jump = True
-            blink.value = 0
-        if lost_game == True:
-            time.sleep(1)
-            clear_game = True
-            lost_game = False
-            blink.value = 0
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                quit_program.set()
-                pygame.quit()
-                quit()
-                gaming = False
-
-            if event.key == pygame.K_SPACE and forrest_jump == False:
-                game_on = True
-                forrest_jump = True
-            if lost_game == True and event.key == pygame.K_SPACE:
-                time.sleep(1)
-                clear_game = True
-                lost_game = False
-                pygame.mixer.music.unpause()
-"""
-            
-            
-            
-            
-            
-
 
         #ekran początek
         gameDisplay.fill(WHITE)
