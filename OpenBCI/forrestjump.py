@@ -165,7 +165,7 @@ if __name__ == "__main__":
                     quit_program.set()
                     gra_trwa = False
 
-        if blink.value == 1 and forrest_jump == False and lost_game==False::
+        if blink.value == 1 and forrest_jump == False and lost_game==False:
             game_on = True
             forrest_jump = True
             blink.value = 0
